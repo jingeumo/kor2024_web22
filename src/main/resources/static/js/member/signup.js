@@ -20,19 +20,20 @@ const onSignUp = ( ) => { console.log('함수 실행됨.');
     let dataObj = { mid : mid , mpwd : mpwd , mname : mname , memail : memail }; console.log( dataObj );
     // (4) fetch 옵션 
     const option = {   
-        method : 'POST' ,
-         headers : { 'Content-Type' : 'application/json'} , 
-         body : JSON.stringify( dataObj )  
+        method : 'POST' ,   // - HTTP 통신 요청 보낼때 사용할 METHOD 선택
+        headers : { 'Content-Type' : 'application/json'} ,  // HTTP 통신 요청 보낼때 header body(본문) 타입 설정
+        body : JSON.stringify( dataObj )  // HTTP 통신 요청 보낼때 body(본문) 자료 대입하는데
+            // JSON.stringify( 객체 ) : 객체타입 --> 문자열타입 변환 , HTTP 는 문자열타입만 전송이 가능하다.
     } // o end 
     // (5) fetch 통신 
-    fetch( '/member/signup.do' , option )
-        .then( response => response.json() )
-        .then( data => { 
+    fetch( '/member/signup.do' , option )   // fetch( '통신할URL' , 옵션 )
+        .then( response => response.json() )    // .then( ) 통신 요청 보내고 응답 객체를 반환 받고 .json() 를 이용한 응답객체를 json타입으로 변환
+        .then( data => {                        // .then( ) json으로 변환된 자료를 실행문 처리
             // (6) fetch 응답 에 따른 화면 구현 
-            if( data == true ){ alert('가입등록 완료'); location.href="/member/login"; }
-            else{  alert('가입실패 : 입력하신 정보가 올바르지 않습니다.') }
+            if( data == true ){ alert('가입등록 완료'); location.href="/member/login"; }  // 만일 응답 자료가 true이면 성공 안내, 로그인페이지로 이동
+            else{  alert('가입실패 : 입력하신 정보가 올바르지 않습니다.') } // 만일 응답 자료가 false이면 실패 안내
         })
-        .catch( error => { alert('가입오류 : 관리자에게 문의'); } )
+        .catch( error => { alert('가입오류 : 관리자에게 문의'); } ) // 통신 오류가 발생하면 오류 메시지 안내
 } // f end
 
 

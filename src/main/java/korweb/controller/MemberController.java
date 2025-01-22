@@ -16,6 +16,29 @@ public class MemberController {
     @PostMapping("/member/signup.do")
     public boolean signup(@RequestBody MemberDto memberDto ){
         return memberService.signup( memberDto );
+    } // f end
+
+    // 2. 로그인 HTTP 매핑
+    @PostMapping("/member/login.do")
+    public boolean login( @RequestBody MemberDto memberDto ){
+        return memberService.login( memberDto );
     }
 
-}
+} // class end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
