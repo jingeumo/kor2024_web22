@@ -16,15 +16,29 @@ const onSignUp = ( ) => { console.log('함수 실행됨.');
     let mname = mnameInput.value;           console.log( mname )
     let memail = memailInput.value;         console.log( memail )
     // (!!!생략) 다양한 유효성검사 코드 생략 .
-
     // (3) 입력받은 값들을 서버에게 보낼 객체 만들기
-    let dataObj = { mid : mid , mpwd : mpwd , mname : mname , memail : memail }; 
-    console.log( dataObj );
-
+    let dataObj = { mid : mid , mpwd : mpwd , mname : mname , memail : memail }; console.log( dataObj );
     // (4) fetch 옵션 
-
+    const option = {   
+        method : 'POST' ,
+         headers : { 'Content-Type' : 'application/json'} , 
+         body : JSON.stringify( dataObj )  
+    } // o end 
     // (5) fetch 통신 
-
-    // (6) fetch 응답 에 따른 화면 구현 
-
+    fetch( '/member/signup.do' , option )
+        .then( response => response.json() )
+        .then( data => { 
+            // (6) fetch 응답 에 따른 화면 구현 
+            if( data == true ){ alert('가입등록 완료'); location.href="/member/login"; }
+            else{  alert('가입실패 : 입력하신 정보가 올바르지 않습니다.') }
+        })
+        .catch( error => { alert('가입오류 : 관리자에게 문의'); } )
 } // f end
+
+
+
+
+
+
+
+
