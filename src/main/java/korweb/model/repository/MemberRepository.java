@@ -29,7 +29,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity , Integer> 
         JPA : MemberEntity findByMid( String mid );
     */
 
-    // [1] 로그인 추상메소드
+    // [1] 로그인 추상메소드 : existsBy필드명And필드명
     boolean existsByMidAndMpwd( String mid , String mpwd );
 
 } // i end
