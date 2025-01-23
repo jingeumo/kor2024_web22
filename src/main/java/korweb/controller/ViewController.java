@@ -19,4 +19,9 @@ public class ViewController {
     @GetMapping("/member/signup")
     public String signup(){ return "/member/signup.html"; }
 
+    @GetMapping("/member/info")
+    public String myINfo(){
+        return "/member/info.html";
+    }
+
 } // class end
